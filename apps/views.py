@@ -44,4 +44,9 @@ def login(request):
             messages.info(request,"please check your email and password")
     return render(request,'Register.html')
 
+def  shops(request):
+    data = {'value': Product.objects.all}
+    return render(request,'shop.html',data)
+
+
 
