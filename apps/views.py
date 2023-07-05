@@ -1,8 +1,11 @@
+from django.db.models import Q
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
-from .models import Product
+from .models import Product, Category
+
+
 # Create your views here.
 def Home(request):
     data={'value':Product.objects.all}
@@ -45,8 +48,22 @@ def login(request):
     return render(request,'Register.html')
 
 def  shops(request):
-    data = {'value': Product.objects.all}
-    return render(request,'shop.html',data)
+    category=Category.objects.all()
+    data =Product.objects.all()
+    active_category=request.GET.get("category",'')
+    if active_category:
+        data =Product.objects.filter(category__slug=active_category)
+    query=request.GET.get('query','')
+    if query:
+        data =Product.objects.filter (Q(name__contains=query) |Q(description__contains=query))
+
+
+
+    return render(request,'shop.html',{'data':data,'category':category,'active_category':active_category})
+def products(request,myid):
+
+    return render(request,'products.html')
+
 
 
 
