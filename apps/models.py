@@ -16,7 +16,7 @@ class Product(models.Model):
     price=models.IntegerField()
     createdat=models.DateTimeField(auto_now_add=True)
     class Meta:
-        ordering=('-created_at',)
+        ordering=('createdat',)
     def __str__(self):
         return self.name
     def priceset(self):

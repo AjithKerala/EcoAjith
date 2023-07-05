@@ -26,22 +26,7 @@
         <div class="col">
 <div class="row mt-3">
 {% for i in data%}
- <div class="col-md-3 my-3">
-     <a href="#">
-<div class="card" style="width: 15rem;" id="one">
-  <img src="#" class="mx-auto d-block "  alt="..." style="width:8rem;">
-  <div class="card-body">
-          <a href="" style="text-decoration:none;color:black;font-size:14px;">{{i.name}}</a>
-
-              <a href="" class="fa fa-shopping-cart nav-item nav-link active" style="font-size: 19px;padding-left:40%;text-decoration:none;color:black"></a>
-  </div>
-  <div style="padding-left:18px">
-    <p style="color:gray">${{i.priceset}}</p>
-
-  </div>
-</div>
-     </a>
-  </div>
+ {% include 'partial/productlist.html'%}
 
   {% endfor %}
     </div>

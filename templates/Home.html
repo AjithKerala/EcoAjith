@@ -15,21 +15,10 @@
 <div class="container">
   <div class="row mt-4">
     {% for i in value%}
-  <div class="col-md-3 my-4" >
-<div class="card main" style="width: 17rem;">
-  <img src="..." class="mx-auto d-block" alt="...">
-  <div class="card-body">
-    <a href="" style="text-decoration:none;color:black ;font-size:14px;">{{i.name}}</a>
-              <a href="" class="fa fa-shopping-cart nav-item nav-link active" style="font-size: 19px;padding-left:45%;text-decoration:none;color:black"></a>
-  </div>
-  <div style="padding-left:18px">
-    <p style="color:gray">₹{{i.price}}</p>
+  <div class="col-md-3 my-4">
 
-  </div>
+ {% include 'partial/productlist.html'%}
 </div>
-
-  </div>
-
 {% endfor %}
   </div>
 
