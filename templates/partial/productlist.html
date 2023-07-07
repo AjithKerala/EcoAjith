@@ -2,7 +2,9 @@
 
           <div class="card main" style="width: 17rem;">
                  <a href="/products/{{i.slug}}/">
-  <img src="..." class="mx-auto d-block" alt="..." style="width:1rem";>
+                       <div class="thumbnail">
+  <img src="{{i.image.url}}" class="mx-auto d-block" alt="..." style="width:70%" >
+                           </div>
               </a>
   <div class="card-body">
     <a href="/products/{{i.slug}}/" style="text-decoration:none;color:black ;font-size:14px;">{{i.name}}</a>

@@ -48,6 +48,9 @@ def login(request):
             messages.info(request,"please check your email and password")
     return render(request,'Register.html')
 
+def logout(request):
+    auth.logout(request)
+
 def  shops(request):
     category=Category.objects.all()
     data =Product.objects.all()
