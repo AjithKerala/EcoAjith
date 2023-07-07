@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from .cart import Cart
 
 from .models import Product, Category
 
@@ -60,10 +61,14 @@ def  shops(request):
 
 
     return render(request,'shop.html',{'data':data,'category':category,'active_category':active_category})
-def products(request,myid):
+def products(request,slug):
+    product=get_object_or_404(Product,slug=slug)
 
-    return render(request,'products.html')
+    return render(request,'products.html',{"product":product})
 
 
-
+def add_to_cart(request,product_id):
+    cart=Cart(request)
+    cart.add(product_id)
+    return render(request,'menu_cart.html')
 

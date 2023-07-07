@@ -1,7 +1,7 @@
 {%extends 'Navbar.html'%}
 {% block title%}Home{% endblock %}
 {% block content %}
-<div  style="height:250px;background-color: #007bff;;text-align:center;color:#fff">
+<div  style="height:250px;background-color: #007bff;text-align:center;color:#fff ">
   <div class="container">
   <div style="padding-top:25px";>
     <h1>Welcome To Noida Homes</h1>
@@ -15,7 +15,7 @@
 <div class="container">
   <div class="row mt-4">
     {% for i in value%}
-  <div class="col-md-3 my-4">
+  <div class="col-md-3 my-1">
 
  {% include 'partial/productlist.html'%}
 </div>

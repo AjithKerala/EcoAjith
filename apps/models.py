@@ -15,6 +15,7 @@ class Product(models.Model):
     description=models.CharField(max_length=255)
     price=models.IntegerField()
     createdat=models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to="shop",null=True)
     class Meta:
         ordering=('createdat',)
     def __str__(self):
