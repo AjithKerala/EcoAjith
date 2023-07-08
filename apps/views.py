@@ -66,7 +66,6 @@ def  shops(request):
     return render(request,'shop.html',{'data':data,'category':category,'active_category':active_category})
 def products(request,slug):
     product=get_object_or_404(Product,slug=slug)
-
     return render(request,'products.html',{"product":product})
 
 
@@ -75,3 +74,8 @@ def add_to_cart(request,product_id):
     cart.add(product_id)
     return render(request,'menu_cart.html')
 
+def cart(request):
+    return render(request,'cart.html')
+
+def checkout(request):
+    return render(request,'checkout.html')

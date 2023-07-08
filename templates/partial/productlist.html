@@ -1,17 +1,22 @@
   <div class="col-md-4 my-3" >
 
           <div class="card main" style="width: 17rem;">
-                 <a href="/products/{{i.slug}}/">
+                 <a href="/product/{{i.slug}}/">
                        <div class="thumbnail">
   <img src="{{i.image.url}}" class="mx-auto d-block" alt="..." style="width:70%" >
                            </div>
               </a>
   <div class="card-body">
-    <a href="/products/{{i.slug}}/" style="text-decoration:none;color:black ;font-size:14px;">{{i.name}}</a>
-              <a href="/products/{{i.slug}}/" class="fa fa-shopping-cart nav-item nav-link active" style="font-size: 19px;padding-left:40%;text-decoration:none;color:black"></a>
+    <a href="/product/{{i.slug}}/"
+       style="text-decoration:none;color:black ;font-size:14px;">{{i.name}}</a>
+              <a href=" "
+                 hx-get="{% url 'addtocart' i.id%}"
+              hx-target="#menu-cart-button"
+               hx-swap="outerHTML"
+                 class="fa fa-shopping-cart nav-item nav-link active" style="font-size: 19px;padding-left:40%;text-decoration:none;color:black"></a>
   </div>
   <div style="padding-left:18px">
-      <a href="/products/{{i.slug}}/">
+      <a href="/product/{{i.slug}}/">
     <p style="color:gray">${{i.priceset}}</p>
              </a>
 
