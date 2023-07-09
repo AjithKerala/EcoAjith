@@ -10,6 +10,7 @@ urlpatterns = [
     path('register',views.Register,name="register"),
     path('logout',views.logout,name='logout'),
     path('myapp',views.myacount,name='myapp'),
+    path('myappedit',views.edit_myacount,name='myappedit'),
     path('shops',views.shops,name='shops'),
     path('product/<slug:slug>/',views.products, name='product'),
     path('addtocart/<int:product_id>/',views.add_to_cart,name='addtocart'),

@@ -42,6 +42,19 @@ def Register(request):
 def myacount(request):
     return render(request,'myaccount.html')
 
+@login_required()
+def edit_myacount(request):
+    if request.method=="POST":
+
+        user=request.user
+        user.first_name=request.POST['first_name']
+        user.last_name=request.POST['last_name']
+        user.username=request.POST['username']
+        user.email=request.POST['email']
+        user.save()
+        return redirect('myapp')
+
+    return render(request,'edit.html')
 
 def login(request):
     if request.method=="POST":

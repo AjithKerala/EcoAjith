@@ -1,12 +1,43 @@
 {%extends 'Navbar.html'%}
 {% block title%}Myaccount{% endblock %}
 {% block content %}
-<div class="container" style="color:black">
+<div class="container mt-3" style="color:black">
     <h3>My account</h3>
-    <div class="mb-6">
-    <strong>Name:</strong>{{request.user.get_full_name}}<br>
-    <strong>UserName:</strong>{{request.user.username}}<br>
-    <strong>E-mail:</strong>{{ request.user.email }}<br>
+    <div class="mb-6 mt-3 ">
+    <div class="card mb-4 " style="width: 40%;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Full Name</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text mb-0">{{request.user.get_full_name}}</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Username</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text mb-0">{{request.user.username}}</p>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Email</p>
+        </div>
+        <div class="col-sm-9">
+          <p class="text mb-0">{{ request.user.email }}</p>
+        </div>
+      </div>
+      <hr>
+
+    </div>
+         <a href="{% url 'myappedit' %}">
+        <button type="button" class="btn btn-primary ">Edit Our data</button>
+            </a>
 </div>
     <hr>
     <h3 class="my-6">My orders</h3>
@@ -65,5 +96,6 @@
 
   </div>
   </section>
+</div>
 </div>
 {% endblock %}

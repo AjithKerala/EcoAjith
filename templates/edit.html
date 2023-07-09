@@ -1,0 +1,60 @@
+{%extends 'Navbar.html'%}
+{% block title%}Cart{% endblock %}
+{% block content %}
+<div class="container mt-3" style="color:black">
+<form method="POST" >
+    <h1>Edit Details</h1>
+ <div class="mb-6 mt-3 ">
+    <div class="card mb-4 " style="width: 40%;">
+    <div class="card-body">
+      <div class="row">
+
+        <div class="col-sm-3">
+          <p class="mb-0">First Name</p>
+        </div>
+        <div class="col-sm-9">
+          <input type="text" class="text mb-0" value="{{request.user.first_name}}" name="first_name">
+        </div>
+      </div>
+      <hr>
+        <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Last name</p>
+        </div>
+        <div class="col-sm-9">
+          <input type="text" class="text mb-0" value="{{request.user.last_name}}" name="last_name">
+
+        </div>
+      </div>
+      <hr>
+        <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Username</p>
+        </div>
+        <div class="col-sm-9">
+          <input type="text" class="text mb-0" value="{{request.user.username}}" name="username">
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <p class="mb-0">Email</p>
+        </div>
+        <div class="col-sm-9">
+          <input type="email" class="text mb-0" value="{{request.user.email}}" name="email">
+
+        </div>
+      </div>
+      <hr>
+      {% csrf_token %}
+        <button type="submit" class="btn btn-primary ">Submit</button>
+
+    </div>
+
+</div>
+
+ </div>
+    </form>
+</div>
+{% endblock %}
