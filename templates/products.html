@@ -1,0 +1,30 @@
+{% extends "Navbar.html"%}
+{% block title%}{{product.name}}{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 thumbnail">
+            <img src= " {% if  product.image.url%}{{product.image.url}} {%else%}{% endif%}"  alt="..." style="width:50%;">
+
+    </div>
+    <div class="col-md-6">
+         <h3>{{product.name}}</h3>
+        {% if product.description%}
+         <p>{{product.description}}</p>
+        {% endif %}
+        <p>{{product.priceset}}</p>
+
+        <form>
+            <a href=""
+             hx-get="{% url 'addtocart' product.id%}"
+              hx-target="#menu-cart-button"
+               hx-swap="outerHTML"
+            >
+            <button type="button" class="btn btn-outline-primary">Add to cart</button>
+                </a>
+        </form>
+    </div>
+        </div>
+</div>
+{% endblock %}

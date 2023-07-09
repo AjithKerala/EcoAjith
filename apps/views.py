@@ -83,3 +83,7 @@ def cart(request):
 @login_required
 def checkout(request):
     return render(request,'checkout.html')
+
+def changepassw(request):
+    form=
+    return render(request,'changepassword.html')
