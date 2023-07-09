@@ -4,6 +4,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from .cart import Cart
+from .forms import PasswordChange
 
 from .models import Product, Category
 
@@ -37,14 +38,19 @@ def Register(request):
 
     return render(request,'registermain.html')
 
+@login_required()
+def myacount(request):
+    return render(request,'myaccount.html')
+
+
 def login(request):
     if request.method=="POST":
-        mail=request.POST['email']
+        username=request.POST['uname']
         password1=request.POST['password']
-        obj=auth.authenticate(email=mail,password=password1)
+        obj=auth.authenticate(username=username,password=password1)
         if obj is not None:
             auth.login(request,obj)
-            return render("/")
+            return redirect("/")
         messages.info(request,'please check your mail and password')
 
 
@@ -53,6 +59,8 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
+
+
 
 def  shops(request):
     category=Category.objects.all()
@@ -71,19 +79,27 @@ def products(request,slug):
     product=get_object_or_404(Product,slug=slug)
     return render(request,'products.html',{"product":product})
 
-
+@login_required()
 def add_to_cart(request,product_id):
     cart=Cart(request)
     cart.add(product_id)
     return render(request,'menu_cart.html')
-
+@login_required()
 def cart(request):
     return render(request,'cart.html')
 
-@login_required
+@login_required(login_url="checkout")
 def checkout(request):
     return render(request,'checkout.html')
-
+@login_required(login_url='setpass')
 def changepassw(request):
-    form=
-    return render(request,'changepassword.html')
+    if request.method=="POST":
+        form = PasswordChange(user=request.user,data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "password was successfully updated")
+        else:
+            messages.info(request,"Please check your password")
+
+    form=PasswordChange(user=request.user)
+    return render(request,'Changepassword.html', {'form':form})

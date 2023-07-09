@@ -2,9 +2,6 @@
 {% block title%}Login{% endblock %}
 {% block content %}
 <section class="text-center">
-        <!-- Background image -->
-
-        <!-- Background image -->
 
         <div class="card mx-4 mx-md-5 shadow-5-strong mt-4" ng-app="myapp" ng-controller="appcontroller">
           <div class="card-body py-5 px-md-5">
@@ -29,7 +26,7 @@
 
                   <!-- Email input -->
                   <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3" class="form-control" name="email" />
+                    <input type="text" id="form3Example3" class="form-control" name="uname" />
                     <label class="form-label" for="form3Example3">Email address</label>
                   </div>
 
@@ -51,7 +48,7 @@
 
                     <div class="col">
                       <!-- Simple link -->
-                      <a href="#!">Forgot password?</a>
+                      <a href="{% url 'setpass' %}">Change Password?</a>
                     </div>
                   </div>
 
