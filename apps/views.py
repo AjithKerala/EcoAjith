@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
@@ -18,7 +19,7 @@ def Register(request):
         username=request.POST['uname']
         email=request.POST['email']
         password1=request.POST['passw1']
-        password2=request.POST['passw2']
+        password2=request.POST['passwtwo']
         if password1==password2:
             if User.objects.filter(username=username).exists():
                 messages.info(request,"Allready Available this username")
@@ -30,26 +31,28 @@ def Register(request):
                 user = User.objects.create_user(username=username, password=password1, first_name=fname,
                                                 last_name=lname, email=email)
                 user.save()
-                return redirect('login')
+                return redirect('register')
         else:
             messages.info(request,"Check your password")
 
-    return render(request,'Register.html')
+    return render(request,'registermain.html')
 
 def login(request):
     if request.method=="POST":
-        emai=request.POST['email']
-        password=request.POST['password']
-        assign=auth.authenticate(email=emai,password=password)
-        if assign is not None:
-            auth.login(assign)
-            return redirect("/")
-        else:
-            messages.info(request,"please check your email and password")
+        mail=request.POST['email']
+        password1=request.POST['password']
+        obj=auth.authenticate(email=mail,password=password1)
+        if obj is not None:
+            auth.login(request,obj)
+            return render("/")
+        messages.info(request,'please check your mail and password')
+
+
     return render(request,'Register.html')
 
 def logout(request):
     auth.logout(request)
+    return redirect('/')
 
 def  shops(request):
     category=Category.objects.all()
@@ -77,5 +80,6 @@ def add_to_cart(request,product_id):
 def cart(request):
     return render(request,'cart.html')
 
+@login_required
 def checkout(request):
     return render(request,'checkout.html')

@@ -1,116 +1,75 @@
 {% extends 'Navbar.html'%}
-{% block title%}register{% endblock %}
+{% block title%}Login{% endblock %}
 {% block content %}
+<section class="text-center">
+        <!-- Background image -->
+
+        <!-- Background image -->
+
+        <div class="card mx-4 mx-md-5 shadow-5-strong mt-4" ng-app="myapp" ng-controller="appcontroller">
+          <div class="card-body py-5 px-md-5">
+
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-8">
+                <h2 class="fw-bold mb-5">Log in now</h2>
+                <form method="POST" action="">
+                   {%if messages%}
+                  {% for i in messages %}
+                 <p style="background-color:black;color:#fff">{{i}}</p>
+                  {% endfor %}
+                  {% endif %}
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+
+                    </div>
+
+                  </div>
 
 
-<!-- Pills navs -->
-<div class="container" style="width:40%" ng-app="myapp" ng-controller="appcontroller">
-<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-  <li class="nav-item" role="presentation">
-    <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
-      aria-controls="pills-login" aria-selected="true">Login</a>
-  </li>
-  <li class="nav-item" role="presentation">
-    <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
-      aria-controls="pills-register" aria-selected="false">Register</a>
-  </li>
-</ul>
-<!-- Pills navs -->
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form3Example3" class="form-control" name="email" />
+                    <label class="form-label" for="form3Example3">Email address</label>
+                  </div>
 
-<!-- Pills content -->
-<div class="tab-content">
-  <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-    <form method="POST" action="{% url 'loginn'%}">
-      <!-- Email input -->
-      <div class="form-outline mb-4">
-        <input type="email" id="loginName" class="form-control" name="email" />
-        <label class="form-label" for="loginName">Email</label>
-      </div>
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    <input type="password" id="form3Example4" class="form-control" name="password" />
+                    <label class="form-label" for="form3Example4">Password</label>
+                  </div>
 
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <input type="password" id="loginPassword" class="form-control" name="password" />
-        <label class="form-label" for="loginPassword">Password</label>
-      </div>
+                  <!-- Checkbox -->
+                  <div class="row mb-4">
+                    <div class="col d-flex justify-content-center">
+                      <!-- Checkbox -->
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked ng-model="showing" />
+                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+                      </div>
+                    </div>
 
-      <!-- 2 column grid layout -->
-      <div class="row mb-4">
-        <div class="col-md-6 d-flex justify-content-center">
-          <!-- Checkbox -->
-          <div class="form-check mb-3 mb-md-0">
-            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked ng-model="showicon"/>
-            <label class="form-check-label" for="loginCheck"> Remember me </label>
+                    <div class="col">
+                      <!-- Simple link -->
+                      <a href="#!">Forgot password?</a>
+                    </div>
+                  </div>
+
+                  <!-- Submit button -->
+                  {% csrf_token %}
+
+                  <button type="submit" class="btn btn-primary btn-block mb-4" ng-show="showing">
+                    Sign up
+                  </button>
+                  <p>Not a member? <a href="{% url 'register'%}">Register</a></p>
+
+
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="col-md-6 d-flex justify-content-center">
-          <!-- Simple link -->
-          <a href="#!">Forgot password?</a>
-        </div>
-      </div>
-         {% csrf_token %}
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-4" ng-show="showicon">Sign in</button>
-
-      <!-- Register buttons -->
-      <div class="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-      </div>
-    </form>
-  </div>
-  <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-    <form method="POST" action="{% url 'login'%}">
-      <!-- Name input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerName" class="form-control" name="fname"/>
-        <label class="form-label" for="registerName">Firstname</label>
-      </div>
-      <div class="form-outline mb-4">
-        <input type="text" id="registerName2" class="form-control" name="lname" />
-        <label class="form-label" for="registerName">Secondname</label>
-      </div>
-
-      <!-- Username input -->
-      <div class="form-outline mb-4">
-        <input type="text" id="registerUsername" class="form-control" name="uname" />
-        <label class="form-label" for="registerUsername">Username</label>
-      </div>
-
-      <!-- Email input -->
-      <div class="form-outline mb-4">
-        <input type="email" id="registerEmail" class="form-control" name="email" />
-        <label class="form-label" for="registerEmail">Email</label>
-      </div>
-
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <input type="password" id="registerPassword" class="form-control" name="passw1" />
-        <label class="form-label" for="registerPassword">Password</label>
-      </div>
-
-      <!-- Repeat Password input -->
-      <div class="form-outline mb-4">
-        <input type="password" id="registerRepeatPassword" class="form-control" name="passw2" />
-        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-      </div>
-
-      <!-- Checkbox -->
-      <div class="form-check d-flex justify-content-center mb-4">
-        <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-          aria-describedby="registerCheckHelpText" ng-model="showicons"/>
-        <label class="form-check-label" for="registerCheck">
-          I agree all statement all are correct
-        </label>
-      </div>
-          {% csrf_token %}
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-3" ng-show="showicons">Sign in</button>
-
-    </form>
-  </div>
-</div>
-  </div>
-
+      </section>
 <script>
   angular.module("myapp",[])
   .controller('appcontroller',function($scope){
