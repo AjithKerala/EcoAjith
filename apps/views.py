@@ -98,9 +98,35 @@ def add_to_cart(request,product_id):
     cart=Cart(request)
     cart.add(product_id)
     return render(request,'menu_cart.html')
-@login_required()
+
 def cart(request):
     return render(request,'cart.html')
+
+# update our cart increment decrement eg,no.of item our purchase increment price
+def update_cart(request, product_id, action):
+    cart=Cart(request)
+
+    if action == 'increment':
+        cart.add(product_id,1,True)
+    else:
+        cart.add(product_id,-1,True )
+    product = Product.objects.get(pk=product_id)
+    quantity=cart.get_item(product_id)['quantity']
+
+    item={
+        'product':{
+            'id':product_id,
+            'name':product.name,
+            'image':product.image,
+            'price':product.price,
+        },
+        'total_price':(quantity * product.price)/100,
+        'quantity':quantity,
+    }
+
+    responce= render(request,'cartslistadd.html',{'item':item})
+    responce['HX-Trigger']='update-menu_cart'
+    return responce
 
 @login_required(login_url="checkout")
 def checkout(request):
@@ -117,3 +143,6 @@ def changepassw(request):
 
     form=PasswordChange(user=request.user)
     return render(request,'Changepassword.html', {'form':form})
+
+def hxmenucart(request):
+    return render(request,'menu_cart.html')

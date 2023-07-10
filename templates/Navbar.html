@@ -48,7 +48,14 @@
                 <a href="{% url 'login'%}" class="fa fa-user-circle nav-item nav-link active" style="font-size: 24px">{{user.username}}</a>
 
                     {% endif %}
+                <div
+                    hx-get="{% url 'hxmenucart'%}"
+                    hx-trigger="update-menu_cart from:body"
+                    hx-swap="innerHTML"
+                >
+
                 {% include 'menu_cart.html' %}
+                    </div>
 
  {% if user.is_superuser %}
               <a class="nav-item nav-link active" href="{% url 'admin:index' %}">Admin</a>
