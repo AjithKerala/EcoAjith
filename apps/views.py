@@ -146,3 +146,5 @@ def changepassw(request):
 
 def hxmenucart(request):
     return render(request,'menu_cart.html')
+def carttotalpricepage(request):
+    return render(request,'cartpricetotal.html')

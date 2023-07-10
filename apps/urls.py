@@ -19,6 +19,7 @@ urlpatterns = [
     path('setpass',views.changepassw,name='setpass'),
     path('hxmenucart',views.hxmenucart,name='hxmenucart'),
     path('update_cart/<int:product_id>/<str:action>',views.update_cart,name='update_cart'),
+    path('carttotal',views.carttotalpricepage,name='carttotal'),
     path("admin",admin.site.urls,name="admin"),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
