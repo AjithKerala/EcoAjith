@@ -21,18 +21,19 @@ def Register(request):
         email=request.POST['email']
         password1=request.POST['passw1']
         password2=request.POST['passwtwo']
+
         if password1==password2:
             if User.objects.filter(username=username).exists():
                 messages.info(request,"Allready Available this username")
-                return redirect('login')
+                return redirect('register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request,'Allready available this gmail')
-                return redirect('login')
+                return redirect('register')
             else:
                 user = User.objects.create_user(username=username, password=password1, first_name=fname,
                                                 last_name=lname, email=email)
                 user.save()
-                return redirect('register')
+                return redirect('login')
         else:
             messages.info(request,"Check your password")
 
