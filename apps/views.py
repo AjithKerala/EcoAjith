@@ -111,18 +111,22 @@ def update_cart(request, product_id, action):
     else:
         cart.add(product_id,-1,True )
     product = Product.objects.get(pk=product_id)
-    quantity=cart.get_item(product_id)['quantity']
+    quantity=cart.get_item(product_id)
 
-    item={
-        'product':{
-            'id':product_id,
-            'name':product.name,
-            'image':product.image,
-            'price':product.price,
-        },
-        'total_price':(quantity * product.price)/100,
-        'quantity':quantity,
-    }
+    if quantity:
+        quantity=quantity['quantity']
+        item = {
+            'product': {
+                'id': product_id,
+                'name': product.name,
+                'image': product.image,
+                'price': product.price,
+            },
+            'total_price': (quantity * product.price) / 100,
+            'quantity': quantity,
+        }
+    else:
+        item=None
 
     responce= render(request,'cartslistadd.html',{'item':item})
     responce['HX-Trigger']='update-menu_cart'
