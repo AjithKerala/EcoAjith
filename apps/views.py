@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .cart import Cart
 from .forms import PasswordChange
 
-from .models import Product, Category
+from .models import Product, Category, Order, Orderitems
 
 
 # Create your views here.
@@ -148,3 +148,31 @@ def hxmenucart(request):
     return render(request,'menu_cart.html')
 def carttotalpricepage(request):
     return render(request,'cartpricetotal.html')
+
+def startorder(request):
+    cart=Cart(request)
+
+    if request.method=="POST":
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        address = request.POST['address']
+        zipcode = request.POST['zipcode']
+        place = request.POST['place']
+        phone = request.POST['phone']
+
+        order=Order.objects.create(user=request.user,first_name=first_name,last_name=last_name,email=email,address=address,zipcode=zipcode,place=place,phone=phone)
+
+        for item in cart:
+            product=item['product']
+            quantity=int(item['quantity'])
+            price=product.price * quantity
+
+            item=Orderitems.objects.create(order=order,product=product,price=price,quantity=quantity)
+
+
+        return redirect('myapp')
+
+    return redirect('cart')
+
+    return render(request,'checkout.html')

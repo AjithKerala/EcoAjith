@@ -10,7 +10,7 @@ urlpatterns = [
     path('register',views.Register,name="register"),
     path('logout',views.logout,name='logout'),
     path('myapp',views.myacount,name='myapp'),
-    path('myappedit',views.edit_myacount,name='myappedit'),
+    path('myappedit/edit',views.edit_myacount,name='myappedit'),
     path('shops',views.shops,name='shops'),
     path('product/<slug:slug>/',views.products, name='product'),
     path('addtocart/<int:product_id>/',views.add_to_cart,name='addtocart'),
@@ -20,6 +20,7 @@ urlpatterns = [
     path('hxmenucart',views.hxmenucart,name='hxmenucart'),
     path('update_cart/<int:product_id>/<str:action>',views.update_cart,name='update_cart'),
     path('carttotal',views.carttotalpricepage,name='carttotal'),
+    path('startorder',views.startorder,name='startorder'),
     path("admin",admin.site.urls,name="admin"),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
