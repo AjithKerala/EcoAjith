@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-l*a*164qx9!bb26a%vpebiq=m+i(dbf*+sue$jpwsalkrx9f7z
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+SECURE_SSL_REDIRECT = False
 SESSION_COOIKE_AGE=86400
 CART_SESSION_ID = 'cart'
 # Application definition

@@ -134,6 +134,22 @@ def update_cart(request, product_id, action):
 
 @login_required(login_url="checkout")
 def checkout(request):
+    if request.method=="POST":
+        fname=request.POST["first_name"],
+        lname = request.POST["last_name"],
+        address = request.POST["address"],
+        zipcode = request.POST["zipcode"],
+        place = request.POST["place"],
+        email= request.POST["email"],
+        phone = request.POST["phone"],
+
+        data=Order(first_name=fname,last_name=lname,address=address,zipcode=zipcode,place=place,email=email,phone=phone)
+        data.save()
+        messages.info(request,"Payment & details stored Successfully")
+
+
+
+
     return render(request,'checkout.html')
 @login_required(login_url='setpass')
 def changepassw(request):

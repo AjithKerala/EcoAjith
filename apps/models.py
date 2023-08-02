@@ -45,9 +45,7 @@ class Order(models.Model):
     place=models.CharField(max_length=255)
     phone=models.CharField(max_length=255)
     created_at=models.DateTimeField(auto_now_add=True)
-    paid=models.BooleanField(default=False)
-    paid_amount=models.IntegerField(default=True,null=True)
-    status=models.CharField(max_length=20,choices=STATUS_CHOICE,default=ORDERED)
+    price=models.CharField(max_length=100,null=True)
 
 class Orderitems(models.Model):
     order=models.ForeignKey(Order,related_name='items',on_delete=models.CASCADE)

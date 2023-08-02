@@ -1,9 +1,16 @@
 {%extends 'Navbar.html'%}
 {% block title%}Checkout{% endblock %}
 {% block content %}
+
 <div class="container">
+
   <h1 class="mt-4">Checkout</h1>
-    <form method="POST" action="{% url 'startorder' %}">
+  {% if messages%}
+    {% for i in messages %}
+    <p style="background-color:black;color:#fff;width:350px;margin-left:400px;margin-top:30px" >{{i}}</p>
+    {% endfor %}
+    {% endif %}
+    <form method="POST" action="">
           {% csrf_token %}
   <div class="row">
     <div class="col md-6">
@@ -43,11 +50,10 @@
          <div class="card">
                 <div class="d-flex justify-content-between px-x">
                   <p class="fw-bold">Discount:</p>
-                  <p class="fw-bold">95$</p>
                 </div>
                 <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
                   <h5 class="fw-bold mb-0">Total:</h5>
-                  <h5 class="fw-bold mb-0">${{cart.get_total}}</h5>
+                  <h5 class="fw-bold mb-0"  >${{cart.get_total}}</h5>
                 </div>
                     </div>
          <div class="card">
