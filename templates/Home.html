@@ -1,21 +1,33 @@
 {%extends 'Navbar.html'%}
 {% block title%}Welcome{% endblock %}
 {% block content %}
-<div  style="height:250px;background-color: #007bff;text-align:center;color:#fff ">
-  <div class="container">
-  <div style="padding-top:25px";>
-    <h1>Welcome To Noida Homes</h1>
-    <p>We sell furnitures for the modern homes</p>
-    <button type="button" class="btn btn-light">Start shopping</button>
-
-  </div>
+{%load static%}
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" >
+  <div class="carousel-inner" style="height:450px;">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="{% static '/images/watchfrontend.jpg'%}" class="d-block w-100" alt="..." style="height:400px;" >
     </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="{% static '/images/badfrotend.jpg'%}" class="d-block w-100" alt="..." style="height:400px;">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static '/images/allfrotend.jpg'%}" class="d-block w-100" alt="..." style="height:400px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 
 <div class="container">
   <div class="row mt-4">
     {% for i in value%}
-  <div class="col-md-3 my-1">
+  <div class="col-md-4 my-0">
 
  {% include 'partial/productlist.html'%}
 </div>

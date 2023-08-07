@@ -6,39 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title%}{% endblock %} | Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <link rel="stylesheet" src="{% static '/css/Navbar.css' %}">
+    <link rel="stylesheet" href="{%static '/css/Navbar.css'%}">
  <style>
      .main:hover{
      background-color:lightgray;
 
      }
+.whites{
+  color:white
+}
+
+
+
  </style>
 </head>
 <body >
 <header>
-    <nav class="navcolor">
-    <nav class="  navbar navbar-expand-lg " style="height:70px; background-color:'red'" >
-        <a class="navbar-brand" href="{% url 'home'%}" class="secondary"><h1>.....Kart</h1></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg" style="background-color:rgb(32, 38, 46);height:100px" >
+        <a class="navbar-brand" href="{% url 'home'%}" class="secondary" ><h1 class="whites">AjiKart</h1></a>
+        <button class="navbar-toggler whites" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
               {% if user.is_authenticated %}
-                          <a class="nav-item nav-link active" href="{% url 'shops'%}">Shop</a>
+                          <a class="nav-item nav-link active" href="{% url 'shops'%}"><h5 class="whites">Shop</h5></a>
 
                     {% else%}
-            <a class="nav-item nav-link active" href="{% url 'shops'%}">Shop</a>
+            <a class="nav-item nav-link active" href="{% url 'shops'%}"><h5 class="whites">Shop</h5></a>
                 {% endif %}
-            <a class="nav-item nav-link active" href="#">About</a>
+            <a class="nav-item nav-link active" href="#"> <h5 class="whites">About</h5></a>
               {% if user.is_authenticated %}
-              <a class="nav-item nav-link active" href="{% url 'logout' %}">Logout</a>
+              <a class="nav-item nav-link active" href="{% url 'logout' %}"><h5 class="whites">Logout</h5></a>
               {% endif %}
 
           </div>
@@ -46,9 +51,9 @@
 
             <div class="navbar-nav">
                 {% if user.is_authenticated %}
-              <a href="{% url 'myapp'%}" class="fa fa-user-circle nav-item nav-link active" style="font-size: 24px">{{user.username}}</a>
+              <a href="{% url 'myapp'%}" class="fa fa-user-circle nav-item nav-link active" style="font-size: 24px ;color:white">{{user.username}}</a>
                 {% else %}
-                <a href="{% url 'login'%}" class="fa fa-user-circle nav-item nav-link active" style="font-size: 24px">{{user.username}}</a>
+                <a href="{% url 'login'%}" class="fa fa-user-circle nav-item nav-link active" style="font-size: 24px;color:white"> {{user.username}}</a>
 
                     {% endif %}
                 <div
@@ -61,28 +66,63 @@
                     </div>
 
  {% if user.is_superuser %}
-              <a class="nav-item nav-link active" href="{% url 'admin:index' %}">Admin</a>
+              <a class="nav-item nav-link active" href="{% url 'admin:index' %}" style="color:white"><h5 class="whites">Admin</h5></a>
                 {% endif %}
             </div>
 
       </nav>
-        </nav>
+
+
     </header>
 {% block content %}
 {% endblock %}
+  <footer>
 
-   <footer class="text-center text-white" style="background-color: #f1f1f1;">
+  <div class=" text-white" style="background-color:rgb(32, 38, 46); height:200px">
+      <div class="container">
+<div class="row p-4">
+    <div class="col-md-4">
+<h6>About us</h6>
+        <h6>Aji kart</h6>
+        <h6>Shop</h6>
+        <h6>Blog</h6>
+
+    </div>
+
+    <div class="col-md-4">
+      <h6>About us</h6>
+        <h6>Aji kart</h6>
+        <h6>Shop</h6>
+        <h6>Blog</h6>
+
+    </div>
+
+    <div class="col-md-4">
+    <h5></h5>
+        <div class="text-center  p-3" style="color:white">
+     A J I K A R T:
+    <a  href="{% url 'home' %}" >© 2020 Copyright:</a>
+  </div>
+    </div>
+
+
+
+</div>
+
+  </div>
+<div class="text-center text-white" style="background-color:rgb(32, 38, 46); height:100px">
+
   <!-- Grid container -->
   <div class="container pt-4">
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
       <a
-        class="btn btn-link btn-floating btn-lg text-dark m-1"
+        class="btn btn-link btn-floating btn-lg text-dark m-1 "
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-facebook-f"></i
+        ><i class="fab fa-facebook-f" style="color:white"></i
       ></a>
 
       <!-- Twitter -->
@@ -91,7 +131,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-twitter"></i
+        ><i class="fab fa-twitter" style="color:white"></i
       ></a>
 
       <!-- Google -->
@@ -100,7 +140,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-google"></i
+        ><i class="fab fa-google" style="color:white"></i
       ></a>
 
       <!-- Instagram -->
@@ -109,7 +149,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-instagram"></i
+        ><i class="fab fa-instagram" style="color:white"></i
       ></a>
 
       <!-- Linkedin -->
@@ -118,7 +158,7 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-linkedin"></i
+        ><i class="fab fa-linkedin" style="color:white"></i
       ></a>
       <!-- Github -->
       <a
@@ -126,26 +166,22 @@
         href="#!"
         role="button"
         data-mdb-ripple-color="dark"
-        ><i class="fab fa-github"></i
+        ><i class="fab fa-github" style="color:white"></i
       ></a>
     </section>
     <!-- Section: Social media -->
   </div>
-  <!-- Grid container -->
 
-  <!-- Copyright -->
-  <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-</footer>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</div>
+
+
+      </footer>
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
 ></script>
 <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
 

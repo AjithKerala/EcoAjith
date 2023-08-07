@@ -22,5 +22,6 @@ urlpatterns = [
     path('carttotal',views.carttotalpricepage,name='carttotal'),
     path('startorder',views.startorder,name='startorder'),
     path("admin",admin.site.urls,name="admin"),
+    path("texts", views.texts, name="texts"),
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

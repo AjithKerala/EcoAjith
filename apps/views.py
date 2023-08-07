@@ -196,3 +196,7 @@ def startorder(request):
     return redirect('cart')
 
     return render(request,'checkout.html')
+
+
+def texts(request):
+    return render(request,'text.html')
