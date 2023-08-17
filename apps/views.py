@@ -89,6 +89,7 @@ def  shops(request):
 
 
     return render(request,'shop.html',{'data':data,'category':category,'active_category':active_category})
+@login_required(login_url='login')
 def products(request,slug):
     product=get_object_or_404(Product,slug=slug)
     return render(request,'products.html',{"product":product})
